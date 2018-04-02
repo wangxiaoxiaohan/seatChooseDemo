@@ -30,7 +30,7 @@ public class sectorView extends FrameLayout {
     private Paint mPaint;
     private Bitmap  mirrorBitmap;
     private Matrix matrix;
-    private  ImageView dragImageView;
+
 
 
 
@@ -82,8 +82,9 @@ public class sectorView extends FrameLayout {
 
                 break;
             case  MotionEvent.ACTION_MOVE:
-                  int deltaX=x-mLastX;
-                  int deltaY=y-mLastY;
+                  if (Math.sqrt(x-mLastX)<50 && Math.sqrt(y-mLastY)<50){
+                      
+                  }
                 break;
              case  MotionEvent.ACTION_UP:
 
@@ -105,8 +106,5 @@ public class sectorView extends FrameLayout {
         drawable.draw(canvas);//将drawable 画bitmap画布上。
         return bitmap;
     }
-    public   void  setDragImageView(ImageView imageView){
-        this.dragImageView=imageView;
-        invalidate();
-    }
+
 }
