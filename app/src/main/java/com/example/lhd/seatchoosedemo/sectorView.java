@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.ViewDragHelper;
@@ -20,16 +22,18 @@ import android.widget.ImageView;
  * Created by LHD on 2018/4/2.
  */
 
-public class sectorView extends FrameLayout {
+public class sectorView extends View {
     private  int  degree;
     private  float InRadius;
     private  float OutRadius;
     private  Drawable mirrorImage;
-    int mLastX;
-    int mLastY;
-    private Paint mPaint;
-    private Bitmap  mirrorBitmap;
-    private Matrix matrix;
+    int mLastX=400;
+    int mLastY=400;
+    private Paint mdragCirclePaint;
+    private  Paint mInPaint;
+    private  Paint mOutPaint;
+    private Bitmap mirrorBitmap;
+
 
 
 
@@ -50,9 +54,20 @@ public class sectorView extends FrameLayout {
         array.recycle();
 
         mirrorBitmap=DrawableToBitmap(mirrorImage);
-        mPaint=new Paint();
-        mPaint.setAntiAlias(true);
-        matrix=new Matrix();
+        mdragCirclePaint=new Paint();
+        mdragCirclePaint.setAntiAlias(true);
+        mdragCirclePaint.setColor(Color.parseColor("#00ff99"));
+
+        mInPaint=new Paint();
+        mInPaint.setAntiAlias(true);
+        mInPaint.setColor(Color.parseColor("#00ff18"));
+
+
+        mOutPaint=new Paint();
+        mOutPaint.setAntiAlias(true);
+        mOutPaint.setColor(Color.parseColor("#00fffc"));
+
+
 
 
     }
@@ -64,7 +79,20 @@ public class sectorView extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+        int x=getWidth()/2;
+        int y=getHeight()/2;
+         float retcfBorder= (float) Math.sqrt(mLastX*mLastX+mLastY*mLastY);
+         RectF rectF=new RectF(-retcfBorder,y-retcfBorder,retcfBorder,y+retcfBorder);
+
+         canvas.drawCircle(mLastX,mLastY,50,mdragCirclePaint);
+//         float sweepAnglePi= (float) Math.atan((y-mLastY)/mLastX);
+//         float sweepAngle= (float) (sweepAnglePi*180/Math.PI);
+
+       //  canvas.drawArc(rectF,0-sweepAngle/2,sweepAngle,true,mOutPaint);
+         super.onDraw(canvas);
+
+
+
 
     }
 
@@ -79,12 +107,13 @@ public class sectorView extends FrameLayout {
                int y= (int) event.getRawY();
         switch (event.getAction()){
             case  MotionEvent.ACTION_DOWN :
-
+                if (Math.sqrt(x-mLastX)>50 && Math.sqrt(y-mLastY)>50)
+                    return  true;
                 break;
             case  MotionEvent.ACTION_MOVE:
-                  if (Math.sqrt(x-mLastX)<50 && Math.sqrt(y-mLastY)<50){
-                      
-                  }
+
+
+
                 break;
              case  MotionEvent.ACTION_UP:
 
@@ -95,6 +124,7 @@ public class sectorView extends FrameLayout {
         mLastY=y;
         return true;
     }
+
     private Bitmap DrawableToBitmap(Drawable drawable){
         if (drawable==null){
             return null;}
