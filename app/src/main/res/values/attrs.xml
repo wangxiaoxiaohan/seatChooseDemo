@@ -2,7 +2,7 @@
 <resources>
 
     <declare-styleable name="sectorView">
-        <attr name="dragImage" format="reference" />
+        <attr name="mirrorImage" format="reference" />
         <attr name="degree" format="integer"/>
         <attr name="radius" format="dimension"/>
 
