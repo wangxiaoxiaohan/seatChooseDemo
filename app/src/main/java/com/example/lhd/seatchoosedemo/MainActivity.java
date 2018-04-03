@@ -20,7 +20,6 @@ public class MainActivity extends Activity {
         initView();
         initListener();
 
-
     }
     private  void initView(){
         sectorView=findViewById(R.id.cccc);
@@ -42,6 +41,7 @@ public class MainActivity extends Activity {
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
              //   sectorView.setDegree(seekBar.getProgress());

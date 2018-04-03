@@ -54,6 +54,8 @@
             android:layout_height="wrap_content" />
 
         <android.support.v7.widget.AppCompatSeekBar
+            android:progressDrawable="@drawable/seekbarprogress"
+            android:thumb="@drawable/seekbarthumb"
             android:layout_margin="15dp"
             android:id="@+id/seekbar"
             android:layout_width="match_parent"

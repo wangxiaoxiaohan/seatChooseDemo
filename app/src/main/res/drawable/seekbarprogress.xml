@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
+    <!--代表进度条的背景色，即未划过的部分-->
+    <item android:id="@android:id/background"
+        >
         <shape
-            android:shape="line">
-           <solid android:color="#00ff18"></solid>
-
+            android:shape="line"
+            >
+          <stroke
+              android:color="@color/green"
+              android:width="3dp"
+              />
         </shape>
     </item>
+    <!--代表进度条的前景色，即已经划过的部分-->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape
+                android:shape="line"
+                >
+                <stroke
+                    android:color="@color/green"
+                    android:width="3dp"
+                    />
 
-
-
+            </shape>
+        </clip>
+    </item>
 </layer-list>

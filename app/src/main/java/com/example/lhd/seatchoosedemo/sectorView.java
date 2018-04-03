@@ -58,22 +58,22 @@ public class sectorView extends View {
         //小球
         mdragCirclePaint=new Paint();
         mdragCirclePaint.setAntiAlias(true);
-        mdragCirclePaint.setColor(Color.parseColor("#00fffc"));
+        mdragCirclePaint.setColor(getResources().getColor(R.color.blue));
 
          //范围绿色
         mInPaint=new Paint();
         mInPaint.setAntiAlias(true);
-        mInPaint.setColor(Color.parseColor("#3300ff18"));
+        mInPaint.setColor(getResources().getColor(R.color.transparentGreen));
 
         // 范围蓝色
         mOutPaint=new Paint();
         mOutPaint.setAntiAlias(true);
-        mOutPaint.setColor(Color.parseColor("#3300fffc"));
+        mOutPaint.setColor(getResources().getColor(R.color.transparentBlue));
 
         //球和后视镜的连接线
          mLinePaint=new Paint();
          mLinePaint.setAntiAlias(true);
-         mLinePaint.setColor(Color.parseColor("#88ffffff"));
+         mLinePaint.setColor(getResources().getColor(R.color.transparentWhite));
          mLinePaint.setStrokeWidth(3);
          //画后视镜图案
          mBitmapPaint=new Paint();
@@ -93,7 +93,7 @@ public class sectorView extends View {
         //获取控件宽高
         int x=getWidth()/2;
         int y=getHeight()/2;
-         int drawableWidth=mirrorBitmap.getWidth();
+         
          int drawableHeight=mirrorBitmap.getHeight();
         //设置扇形的轮廓矩形
          float retcfBorder= (float) Math.sqrt(mLastX*mLastX+(y-mLastY)*(y-mLastY));
