@@ -14,10 +14,11 @@
         android:layout_width="0dp"
         android:layout_height="match_parent">
         <RelativeLayout
-
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+
                 android:layout_centerVertical="true"
                 android:id="@+id/scpoeImage"
                 android:layout_alignParentLeft="true"
@@ -66,16 +67,22 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent">
+
          <ImageView
              android:src="@drawable/car_seat"
              android:layout_width="match_parent"
              android:layout_height="match_parent" />
         <com.example.lhd.seatchoosedemo.sectorView
-            app:mirrorImage="@drawable/ic_mirror"
+
             android:id="@+id/cccc"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
+        <ImageView
+            android:layout_marginLeft="0dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_mirror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </FrameLayout>
 
 </LinearLayout>

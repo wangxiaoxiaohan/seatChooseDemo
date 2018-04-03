@@ -26,14 +26,14 @@ import android.widget.LinearLayout;
 
 public class sectorView extends View {
     private  float  degree;
-    private  Drawable mirrorImage;
+ //   private  Drawable mirrorImage;
     int mLastX;
     int mLastY;
     private Paint mdragCirclePaint;
     private  Paint mInPaint;
     private  Paint mOutPaint;
     private  Paint mLinePaint;
-    private  Paint mBitmapPaint;
+    //private  Paint mBitmapPaint;
     private Bitmap mirrorBitmap;
     private  float LineAngle;
 
@@ -49,11 +49,11 @@ public class sectorView extends View {
    //         this.degree=array.getInt(R.styleable.sectorView_degree,180);
    //            this.InRadius=array.getDimensionPixelSize(R.styleable.sectorView_radius,(int) TypedValue.applyDimension(
    //                    TypedValue.COMPLEX_UNIT_PX, 20, getResources().getDisplayMetrics()));
-            this.mirrorImage=array.getDrawable(R.styleable.sectorView_mirrorImage);
+          //  this.mirrorImage=array.getDrawable(R.styleable.sectorView_mirrorImage);
 
         array.recycle();
 
-        mirrorBitmap=DrawableToBitmap(mirrorImage);
+    //    mirrorBitmap=DrawableToBitmap(mirrorImage);
 
         //小球
         mdragCirclePaint=new Paint();
@@ -76,10 +76,10 @@ public class sectorView extends View {
          mLinePaint.setColor(getResources().getColor(R.color.transparentWhite));
          mLinePaint.setStrokeWidth(3);
          //画后视镜图案
-         mBitmapPaint=new Paint();
-         mBitmapPaint.setAntiAlias(true);
-         mBitmapPaint.setFilterBitmap(true);
-         mBitmapPaint.setDither(true);
+//         mBitmapPaint=new Paint();
+//         mBitmapPaint.setAntiAlias(true);
+//         mBitmapPaint.setFilterBitmap(true);
+//         mBitmapPaint.setDither(true);
 
     }
 
@@ -93,8 +93,18 @@ public class sectorView extends View {
         //获取控件宽高
         int x=getWidth()/2;
         int y=getHeight()/2;
-         
-         int drawableHeight=mirrorBitmap.getHeight();
+        //避免圆点划出窗口外部
+        if (mLastX>x*2){
+            mLastX=x*2;
+        }else if(mLastX<150){
+            mLastX=150;
+        }
+         if (mLastY>y*2){
+             mLastY=y*2;
+         }else if(mLastY<0){
+             mLastY=0;
+         }
+        // int drawableHeight=mirrorBitmap.getHeight();
         //设置扇形的轮廓矩形
          float retcfBorder= (float) Math.sqrt(mLastX*mLastX+(y-mLastY)*(y-mLastY));
          RectF rectF=new RectF(-retcfBorder,y-retcfBorder,retcfBorder,y+retcfBorder);
@@ -113,7 +123,7 @@ public class sectorView extends View {
          canvas.drawArc(inRectF,MidAngle-sweepAngle/2,sweepAngle,true,mInPaint);
          canvas.drawLine(0,y,mLastX,mLastY,mLinePaint);
          canvas.drawCircle(mLastX,mLastY,11,mdragCirclePaint);
-         canvas.drawBitmap(mirrorBitmap,0,y-drawableHeight/2,mBitmapPaint);
+       //  canvas.drawBitmap(mirrorBitmap,0,y-drawableHeight/2,mBitmapPaint);
          super.onDraw(canvas);
 
 
@@ -143,10 +153,11 @@ public class sectorView extends View {
                     }
                     break;
                 case  MotionEvent.ACTION_MOVE:
-
                     mLastX=x;
                     mLastY=y;
+
                     invalidate();
+
                     Log.d("看我看我", "onDraw: "+ LineAngle);
                     break;
                 case  MotionEvent.ACTION_UP:
