@@ -3,7 +3,7 @@
 
     <declare-styleable name="sectorView">
         <attr name="mirrorImage" format="reference" />
-        <attr name="degree" format="integer"/>
+
         <attr name="radius" format="dimension"/>
 
     </declare-styleable>
