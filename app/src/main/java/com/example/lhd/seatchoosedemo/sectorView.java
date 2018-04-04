@@ -96,8 +96,8 @@ public class sectorView extends View {
         //避免圆点划出窗口外部
         if (mLastX>x*2){
             mLastX=x*2;
-        }else if(mLastX<150){
-            mLastX=150;
+        }else if(mLastX<100){
+            mLastX=100;
         }
          if (mLastY>y*2){
              mLastY=y*2;
@@ -184,8 +184,8 @@ public class sectorView extends View {
         invalidate();
 
      }
-     public int getUserAngle(){
-       return (int) degree;
+     public float getUserAngle(){
+       return  degree/2;
      }
      public float getLineAngle(){
          return  LineAngle;
